@@ -5,13 +5,15 @@ import java.math.BigDecimal;
 public class Discount {
 	private String discountCause;
 	private BigDecimal discount;
+	private String currency;
 	
 	public Discount() {
 	}
 
-	public Discount(String discountCause, BigDecimal discount) {
+	public Discount(String discountCause, BigDecimal discount, String currency) {
 		this.discountCause = discountCause;
 		this.discount = discount;
+		this.currency = currency;
 	}
 
 	public String getDiscountCause() {
@@ -28,5 +30,13 @@ public class Discount {
 
 	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
 	}
 }
