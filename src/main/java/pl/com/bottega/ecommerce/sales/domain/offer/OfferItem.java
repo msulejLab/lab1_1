@@ -88,26 +88,16 @@ public class OfferItem {
 	 * @return
 	 */
 	public boolean sameAs(OfferItem other, double delta) {
-		if (product.getProductName() == null) {
-			if (other.getProduct().getProductName() != null)
+		if (product != null) {
+			if (!product.equals(other.getProduct())) {
 				return false;
-		} else if (!product.getProductName().equals(other.getProduct().getProductName()))
-			return false;
-		if (product.getProductPrice() == null) {
-			if (other.getProduct().getProductPrice() != null)
-				return false;
-		} else if (!product.getProductPrice().equals(other.getProduct().getProductPrice()))
-			return false;
-		if (product.getProductId() == null) {
-			if (other.getProduct().getProductId() != null)
-				return false;
-		} else if (!getProduct().getProductId().equals(other.getProduct().getProductId()))
-			return false;
-		if (product.getProductType() != other.getProduct().getProductType())
-			return false;
+			}
+		}
 
-		if (quantity != other.quantity)
+		if (quantity != other.quantity) {
 			return false;
+		}
+		
 
 		BigDecimal max, min;
 		if (money.getTotalCost().compareTo(other.money.getTotalCost()) > 0) {

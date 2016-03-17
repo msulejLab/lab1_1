@@ -62,5 +62,4 @@ public class Product {
 	public void setProductType(String productType) {
 		this.productType = productType;
 	}
-	
 }
