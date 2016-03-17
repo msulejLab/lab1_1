@@ -29,26 +29,23 @@ public class OfferItem {
 
 	private String currency;
 
-	// discount
-	private String discountCause;
-
-	private BigDecimal discount;
+	private Discount discount;
 
 	public OfferItem(Product product, int quantity) {
-		this(product, quantity, null, null);
+		this(product, quantity, new Discount());
 	}
 
-	public OfferItem(Product product, int quantity,
-			BigDecimal discount, String discountCause) {
+	public OfferItem(Product product, int quantity, Discount discount) {
 		this.product = product;
-
+		
 		this.quantity = quantity;
+		
 		this.discount = discount;
-		this.discountCause = discountCause;
 
 		BigDecimal discountValue = new BigDecimal(0);
+		
 		if (discount != null)
-			discountValue = discountValue.subtract(discount);
+			discountValue = discountValue.subtract(discount.getDiscount());
 
 		this.totalCost = product.getProductPrice()
 				.multiply(new BigDecimal(quantity)).subtract(discountValue);
@@ -64,17 +61,24 @@ public class OfferItem {
 	}
 
 	public BigDecimal getDiscount() {
-		return discount;
+		return discount.getDiscount();
 	}
 
 	public String getDiscountCause() {
-		return discountCause;
+		return discount.getDiscountCause();
 	}
 
 	public int getQuantity() {
 		return quantity;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}	
 	
 	// TODO equals, hashCode
 
@@ -121,14 +125,4 @@ public class OfferItem {
 
 		return acceptableDelta.compareTo(difference) > 0;
 	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	
-	
 }

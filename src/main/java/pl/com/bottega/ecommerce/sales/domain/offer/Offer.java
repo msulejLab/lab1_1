@@ -76,6 +76,4 @@ private List<OfferItem> availabeItems = new ArrayList<OfferItem>();
 		}
 		return null;
 	}
-	
-
 }
